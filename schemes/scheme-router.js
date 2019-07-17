@@ -52,7 +52,7 @@ router.post('/', async (req, res) => {
     const scheme = await Schemes.add(schemeData);
     res.status(201).json(scheme);
   } catch (err) {
-    res.status(500).json({ message: 'Failed to create new scheme' });
+    res.status(500).json(err.message);
   }
 });
 
