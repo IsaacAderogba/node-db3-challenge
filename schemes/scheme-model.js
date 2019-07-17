@@ -20,6 +20,16 @@ module.exports = {
       )
       .where("scheme_id", id);
   },
+  addStep: function(step, scheme_id) {
+    const stepToAdd = {
+      scheme_id,
+      step_number: step.step_number,
+      instructions: step.instructions
+    };
+    return db("steps")
+      .insert(stepToAdd)
+      .then(id => ({ ...stepToAdd, id: id[0] }));
+  },
   add: function(scheme) {
     return db("schemes")
       .insert(scheme)
